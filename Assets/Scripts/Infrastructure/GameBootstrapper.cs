@@ -9,7 +9,7 @@ namespace Scripts.Infrasracture
         private void Awake()
         {
             _game = new Game();
-
+            _game.GameStateMachine.Enter<BootstrapState>();
             DontDestroyOnLoad(this);
         }
     }
