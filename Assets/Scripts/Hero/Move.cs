@@ -1,3 +1,4 @@
+using Scripts.CameraLogic;
 using Scripts.Infrasracture;
 using Scripts.Services.Input;
 using System.Collections;
@@ -21,6 +22,7 @@ namespace Scripts.Hero
         void Start()
         {
             _camera = Camera.main;
+            _camera.GetComponent<CameraFollow>().SetWhatToFollow(this.gameObject);
         }
 
         void Update()
