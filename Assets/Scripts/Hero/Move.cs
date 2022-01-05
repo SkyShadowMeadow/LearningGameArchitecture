@@ -22,13 +22,11 @@ namespace Scripts.Hero
         void Start()
         {
             _camera = Camera.main;
-            _camera.GetComponent<CameraFollow>().SetWhatToFollow(this.gameObject);
         }
 
         void Update()
         {
             Vector3 movementVector = Vector3.zero;
-            Debug.Log(_inputService.Axes.sqrMagnitude);
             if (_inputService.Axes.sqrMagnitude > Constants.Epsilon)
             {
                 movementVector = _camera.transform.TransformDirection(_inputService.Axes);

@@ -1,5 +1,5 @@
-﻿using Scripts.Services.Input;
-using UnityEngine;
+﻿using Scripts.Logic;
+using Scripts.Services.Input;
 
 namespace Scripts.Infrasracture
 {
@@ -8,9 +8,9 @@ namespace Scripts.Infrasracture
         public static IInputService InputService;
         public GameStateMachine GameStateMachine;
 
-        public Game()
+        public Game(ICoroutineRunner coroutineRunner, LoadingCurtain loadingCurtain)
         {
-            GameStateMachine = new GameStateMachine();
+            GameStateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), loadingCurtain);
         }
     }
 }
