@@ -8,11 +8,11 @@ namespace Scripts.Infrasracture
     public class LoadLevelState : IPayLoadState<string>
     {
         private const string InitialPointTag = "InitialPoint";
-        private const string HeroPath = "Hero/hero";
-        private const string HudPath = "Hud/Hud";
+
         private GameStateMachine _gameStateMachine;
         private SceneLoader _sceneLoader;
         private readonly LoadingCurtain _loadingCurtain;
+        private readonly IGameFactory _gameFactory;
 
         public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingCurtain loadingCurtain)
         {
@@ -27,30 +27,16 @@ namespace Scripts.Infrasracture
             _sceneLoader.Load(sceneLevel, OnLoaded);
         }
 
-        public void Exit()
-        {
+        public void Exit() =>
             _loadingCurtain.Hide();
-        }
+        
         private void OnLoaded()
         {
-            var initialPoint = GameObject.FindGameObjectWithTag(InitialPointTag);
-            var hero = Instantiate(HeroPath, at: initialPoint.transform.position);
-            Instantiate(HudPath);
-
+            GameObject hero = _gameFactory.CreateHero(at: GameObject.FindGameObjectWithTag(InitialPointTag));
+            _gameFactory.CreateHud();
             SetCameraToFollow(hero);
 
             _gameStateMachine.Enter<GameLoopState>();
-        }
-
-        private static GameObject Instantiate(string path)
-        {
-            var prefab = Resources.Load<GameObject>(path);
-            return Object.Instantiate(prefab);
-        }
-        private static GameObject Instantiate(string path, Vector3 at)
-        {
-            var prefab = Resources.Load<GameObject>(path);
-            return Object.Instantiate(prefab, at, Quaternion.identity);
         }
 
         private static void SetCameraToFollow(GameObject hero)
