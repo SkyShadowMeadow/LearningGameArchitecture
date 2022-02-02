@@ -1,4 +1,4 @@
-﻿namespace Scripts.Infrasracture
+﻿namespace Scripts.Infrasracture.States
 {
     internal class GameLoopState : IState
     {

@@ -1,3 +1,4 @@
+using Assets.Scripts.Infrastructure.Services;
 using Scripts.CameraLogic;
 using Scripts.Infrasracture;
 using Scripts.Services.Input;
@@ -16,7 +17,7 @@ namespace Scripts.Hero
 
         private void Awake()
         {
-            _inputService = Game.InputService;
+            _inputService = AllServices.Container.GetSingle<IInputService>();
         }
 
         void Start()

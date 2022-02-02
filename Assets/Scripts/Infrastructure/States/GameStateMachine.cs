@@ -1,20 +1,22 @@
+using Assets.Scripts.Infrastructure.Services;
+using Scripts.Infrasracture.Factory;
 using Scripts.Logic;
 using System;
 using System.Collections.Generic;
 
-namespace Scripts.Infrasracture
+namespace Scripts.Infrasracture.States
 {
     public class GameStateMachine
     {
         private readonly Dictionary<Type, IExitableState> _states;
         private IExitableState _activeState;
 
-        public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain)
+        public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain, AllServices services)
         {
             _states = new Dictionary<Type, IExitableState>()
             {
-                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain),
+                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, services.GetSingle<IGameFactory>()),
                 [typeof(GameLoopState)] = new GameLoopState(this)
             };
         }

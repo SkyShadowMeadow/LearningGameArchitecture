@@ -2,13 +2,13 @@
 using Scripts.Infrasracture.AssetManagement;
 using UnityEngine;
 
-namespace Scripts.Infrasracture
+namespace Scripts.Infrasracture.Factory
 {
     public class GameFactory : IGameFactory
     {
-        private readonly IAssetProvider _assets;
+        private readonly IAsset _assets;
 
-        public GameFactory(IAssetProvider assets)
+        public GameFactory(IAsset assets)
         {
             _assets = assets;
         }

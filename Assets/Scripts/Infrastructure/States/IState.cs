@@ -1,4 +1,4 @@
-﻿namespace Scripts.Infrasracture
+﻿namespace Scripts.Infrasracture.States
 {
     public interface IState : IExitableState
     {
