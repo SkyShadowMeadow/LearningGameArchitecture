@@ -1,30 +1,23 @@
 ﻿
+using Scripts.Infrasracture.AssetManagement;
 using UnityEngine;
 
 namespace Scripts.Infrasracture
 {
     public class GameFactory : IGameFactory
     {
-        private const string HeroPath = "Hero/hero";
-        private const string HudPath = "Hud/Hud";
+        private readonly IAssetProvider _assets;
 
-        public GameObject CreateHero(GameObject at)
+        public GameFactory(IAssetProvider assets)
         {
-            return Instantiate(HeroPath, at.transform.position);
+            _assets = assets;
         }
-        public void CreateHud()
-        {
-            Instantiate(HudPath);
-        }
-        private static GameObject Instantiate(string path)
-        {
-            var prefab = Resources.Load<GameObject>(path);
-            return Object.Instantiate(prefab);
-        }
-        private static GameObject Instantiate(string path, Vector3 at)
-        {
-            var prefab = Resources.Load<GameObject>(path);
-            return Object.Instantiate(prefab, at, Quaternion.identity);
-        }
+
+        public GameObject CreateHero(GameObject at) 
+            => _assets.Instantiate(AssetPath.HeroPath, at.transform.position);
+
+        public void CreateHud() 
+            => _assets.Instantiate(AssetPath.HudPath);
+
     }
 }
