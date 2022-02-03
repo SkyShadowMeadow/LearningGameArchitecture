@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Infrastructure.Services;
+using Assets.Scripts.Infrastructure.Services.PersistentProgress;
 using Scripts.Infrasracture.AssetManagement;
 using Scripts.Infrasracture.Factory;
 using Scripts.Services.Input;
@@ -37,6 +38,7 @@ namespace Scripts.Infrasracture.States
         private void RegisterServices()
         {
             _services.RegisterSingle<IAsset>(new AssetProvider());
+            _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
             _services.RegisterSingle<IInputService>(RegisterInputService());
             _services.RegisterSingle<IGameFactory>(new GameFactory(_services.GetSingle<IAsset>()));
         }
