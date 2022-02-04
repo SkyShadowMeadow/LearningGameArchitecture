@@ -11,5 +11,9 @@ namespace Assets.Scripts.Data
             LevelName = levelName;
             Position = position;
         }
+        public PositionOnLevel(string levelName)
+        {
+            LevelName = levelName;
+        }
     }
 }

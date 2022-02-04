@@ -7,9 +7,9 @@ namespace Assets.Scripts.Data
     {
         public PositionOnLevel PositionOnLevel;
 
-        public WorldData(PositionOnLevel positionOnLevel)
+        public WorldData(string initialLevel)
         {
-            PositionOnLevel = positionOnLevel;
+            PositionOnLevel = new PositionOnLevel(initialLevel);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Infrastructure.Services.PersistentProgress
 {
-    interface IPersistentProgressService : IService
+    public interface IPersistentProgressService : IService
     {
         PlayerProgress Progress { get; set; }
     }
