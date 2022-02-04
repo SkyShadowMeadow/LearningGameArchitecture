@@ -19,7 +19,7 @@ namespace Scripts.Infrasracture.States
             _states = new Dictionary<Type, IExitableState>()
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, services.GetSingle<IGameFactory>()),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, services.GetSingle<IGameFactory>(), services.GetSingle<IPersistentProgressService>()),
                 [typeof(SaveLoadState)] = new SaveLoadState(this, services.GetSingle<IPersistentProgressService>(), services.GetSingle<ISaveLoad>()),
                 [typeof(GameLoopState)] = new GameLoopState(this)
             };

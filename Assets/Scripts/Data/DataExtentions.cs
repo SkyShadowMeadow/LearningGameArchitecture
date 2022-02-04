@@ -10,7 +10,15 @@ namespace Assets.Scripts.Data
         public static Vector3 TurnToVector3Unity(this Vector3Data position) =>
             new Vector3(position.X, position.Y, position.Z);
 
+        public static Vector3 AddY(this Vector3 vector, float y)
+        {
+            vector.y += y;
+            return vector;
+        }
+
         public static T ToDeserialized<T>(this string json) => JsonUtility.FromJson<T>(json);
+
+        public static string ToJson(this object obj) => JsonUtility.ToJson(obj);
 
     }
 }

@@ -30,18 +30,14 @@ namespace Assets.Scripts.Infrastructure.States
         public void Exit()
         {        }
         
-        private void LoadOrInitProgress()
-        {
-            if (_saveLoadService.LoadProgress() != null)
-                _progressService.Progress = _saveLoadService.LoadProgress();
-            else
-                _progressService.Progress = NewProgress();
-        }
+        private void LoadOrInitProgress() =>
+            _progressService.Progress =
+               _saveLoadService.LoadProgress()
+                ?? NewProgress();
+        
 
-        private PlayerProgress NewProgress()
-        {
-            Debug.Log("new progress");
-            return new PlayerProgress("Cemetery");
-        }
+        private PlayerProgress NewProgress() =>
+            new PlayerProgress("Cemetery");
+   
     }
 }

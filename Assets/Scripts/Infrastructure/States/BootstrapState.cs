@@ -39,11 +39,11 @@ namespace Scripts.Infrasracture.States
 
         private void RegisterServices()
         {
+            _services.RegisterSingle<IInputService>(RegisterInputService());
             _services.RegisterSingle<IAsset>(new AssetProvider());
             _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
-            _services.RegisterSingle<ISaveLoad>(new SaveLoad());
-            _services.RegisterSingle<IInputService>(RegisterInputService());
             _services.RegisterSingle<IGameFactory>(new GameFactory(_services.GetSingle<IAsset>()));
+            _services.RegisterSingle<ISaveLoad>(new SaveLoad(_services.GetSingle<IPersistentProgressService>(), _services.GetSingle<IGameFactory>()));
         }
         private static InputService RegisterInputService()
         {

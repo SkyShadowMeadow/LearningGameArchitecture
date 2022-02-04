@@ -12,6 +12,7 @@ namespace Scripts.Hero
     {
         [SerializeField] private CharacterController _characterController;
         [SerializeField] private float _movementSpeed;
+
         private IInputService _inputService;
         private Camera _camera;
 
@@ -43,19 +44,19 @@ namespace Scripts.Hero
 
         public void LoadProgress(PlayerProgress playerProgress)
         {
-            if(GetCurrentScene() == playerProgress.WorldData.PositionOnLevel.LevelName)
-            {
-                Vector3Data savedPosition = playerProgress.WorldData.PositionOnLevel.Position;
-                if (savedPosition != null)
-                    Wrap(to: savedPosition);
-                transform.position = playerProgress.WorldData.PositionOnLevel.Position.TurnToVector3Unity();
-            }
+            if (GetCurrentScene() != playerProgress.WorldData.PositionOnLevel.LevelName) return;
+           
+            Vector3Data savedPosition = playerProgress.WorldData.PositionOnLevel.Position;
+            if (savedPosition != null)
+                Wrap(to: savedPosition);
+                //transform.position = playerProgress.WorldData.PositionOnLevel.Position.TurnToVector3Unity();
+            
         }
 
         private void Wrap(Vector3Data to)
         {
             _characterController.enabled = false;
-            transform.position = to.TurnToVector3Unity();
+            transform.position = to.TurnToVector3Unity().AddY(_characterController.height);
             _characterController.enabled = true;
         }
 
