@@ -397,6 +397,8 @@ GameObject:
   - component: {fileID: 95206231959375140}
   - component: {fileID: 5832441306949356449}
   - component: {fileID: -4694690139683925247}
+  - component: {fileID: 722593386}
+  - component: {fileID: 8453602402976432069}
   m_Layer: 0
   m_Name: FreeLichPBR
   m_TagString: Untagged
@@ -475,6 +477,33 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &722593386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500939411536426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803191ab3cd7e5b4889c25a1110a79bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Agent: {fileID: -4694690139683925247}
+--- !u!114 &8453602402976432069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500939411536426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220b01d924def2b448a500192a38f573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Agent: {fileID: -4694690139683925247}
+  Animator: {fileID: 5832441306949356449}
 --- !u!1 &1537370055453520
 GameObject:
   m_ObjectHideFlags: 0
