@@ -1,16 +1,11 @@
 ﻿using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Assets.CodeBase.Enemy
 {
-    class AgentMoveToPlayer : MonoBehaviour
+    public class AgentMoveToPlayer : MonoBehaviour
     {
         private const float MinimalDistance = 1;
 
