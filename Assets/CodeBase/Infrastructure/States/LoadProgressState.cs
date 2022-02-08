@@ -36,7 +36,16 @@ namespace CodeBase.Infrastructure.States
         ?? NewProgress();
     }
 
-    private PlayerProgress NewProgress() => 
-      new PlayerProgress(initialLevel: "Cemetery");
-  }
+    private PlayerProgress NewProgress()
+    {
+      var progress = new PlayerProgress(initialLevel: "Cemetery");
+
+      progress.HeroState.MaxHP = 50;
+      //progress.HeroStats.Damage = 1;
+      //progress.HeroStats.DamageRadius = 0.5f;
+      progress.HeroState.ResetHP();
+
+      return progress;
+    }
+}
 }
