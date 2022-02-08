@@ -1,4 +1,5 @@
 ﻿using Assets.CodeBase.Hero;
+using Assets.CodeBase.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace Assets.CodeBase.UI
     {
         public HpBar HpBar;
 
-        private HeroHealth _health;
+        private IHealth _health;
 
-        public void Construct(HeroHealth health)
+        public void Construct(IHealth health)
         {
             _health = health;
             _health.HealthChanged += UpdateHpBar;
@@ -20,7 +21,7 @@ namespace Assets.CodeBase.UI
 
         private void Start()
         {
-            HeroHealth health = GetComponent<HeroHealth>();
+            IHealth health = GetComponent<IHealth>();
 
             if (health != null)
                 Construct(health);

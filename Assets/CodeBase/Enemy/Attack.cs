@@ -1,4 +1,5 @@
 ﻿using Assets.CodeBase.Hero;
+using Assets.CodeBase.Logic;
 using CodeBase.Enemy;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services;
@@ -46,7 +47,7 @@ namespace Assets.CodeBase.Enemy
         {
             if (Hit(out Collider hit))
             {
-                hit.transform.GetComponent<HeroHealth>().TakeDamage(Damage);
+                hit.transform.GetComponent<IHealth>().TakeDamage(Damage);
             }
         }
 

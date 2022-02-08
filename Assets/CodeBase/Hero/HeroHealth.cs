@@ -1,4 +1,5 @@
 ﻿using Assets.CodeBase.Data;
+using Assets.CodeBase.Logic;
 using CodeBase.Data;
 using CodeBase.Hero;
 using CodeBase.Infrastructure.Services.PersistentProgress;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.CodeBase.Hero
 {
-    public class HeroHealth : MonoBehaviour, ISavedProgress
+    public class HeroHealth : MonoBehaviour, ISavedProgress, IHealth
     {
         public HeroAnimator Animator;
 

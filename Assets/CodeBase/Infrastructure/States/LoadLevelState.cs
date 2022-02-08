@@ -1,5 +1,6 @@
 ﻿using System;
 using Assets.CodeBase.Hero;
+using Assets.CodeBase.Logic;
 using Assets.CodeBase.UI;
 using CodeBase.CameraLogic;
 using CodeBase.Infrastructure.Factory;
