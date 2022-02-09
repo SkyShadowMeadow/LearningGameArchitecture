@@ -1,23 +1,20 @@
 using System;
 using System.Collections.Generic;
+using Assets.CodeBase.StaticData;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.Factory
 {
-  public interface IGameFactory:IService
+    public interface IGameFactory : IService
     {
-
-        List<ISavedProgressReader> ProgressReaders { get; }
-        GameObject HeroGameObject { get; }
-        List<ISavedProgress> ProgressWriters { get; }
-
-        event Action HeroCreated;
-
         GameObject CreateHero(GameObject at);
         GameObject CreateHud();
-
+        GameObject CreateMonster(MonsterTypeId typeId, Transform parent);
+        List<ISavedProgressReader> ProgressReaders { get; }
+        List<ISavedProgress> ProgressWriters { get; }
         void Cleanup();
+        void Register(ISavedProgressReader savedProgress);
     }
 }

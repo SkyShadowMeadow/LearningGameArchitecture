@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2382687320034124267}
-  - component: {fileID: 22407443148820310}
+  - component: {fileID: 781571874130061967}
   m_Layer: 0
   m_Name: GameRunner
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &22407443148820310
+--- !u!114 &781571874130061967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e2675d044d4833b7420ed81884bf46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BootstrapperPrefab: {fileID: 661263131536743153, guid: 53d9601fe04792c47adf2b842258b961, type: 3}
+  BootstrapperPrefab: {fileID: 497832358942835494, guid: 53d9601fe04792c47adf2b842258b961, type: 3}

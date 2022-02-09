@@ -207,7 +207,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2446381781190519203
+--- !u!1001 &2019075649
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -262,9 +262,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameRunner
       objectReference: {fileID: 0}
-    - target: {fileID: 9003059503840142568, guid: cd406e333d52c1347b963ea0bba2eb2e, type: 3}
-      propertyPath: bootstrapperPrefab
-      value: 
-      objectReference: {fileID: 8858178489682324863, guid: 06f9c6281e46a1843bfc8a4c87330945, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd406e333d52c1347b963ea0bba2eb2e, type: 3}
