@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using Assets.CodeBase.Enemy;
+using Assets.CodeBase.Infrastructure.Services.Randomizer;
 using Assets.CodeBase.Infrastructure.Services.StaticData;
 using Assets.CodeBase.Logic;
 using Assets.CodeBase.StaticData;
@@ -20,21 +20,40 @@ namespace CodeBase.Infrastructure.Factory
 
         private readonly IAssetProvider _assets;
         private readonly IStaticDataService _staticData;
-
+        private readonly IRandomService _randomService;
+        private readonly IPersistentProgressService _persistentProgressService;
         private GameObject _heroGameObject;
 
-
-        public GameFactory(IAssetProvider assets, IStaticDataService staticData)
+        public GameFactory(IAssetProvider assets, IStaticDataService staticData, IRandomService randomService, IPersistentProgressService persistentProgressService)
         {
             _assets = assets;
             _staticData = staticData;
+            _randomService = randomService;
+            _persistentProgressService = persistentProgressService;
         }
 
         public GameObject CreateHero(GameObject at) =>
           _heroGameObject = InstantiateRegistered(AssetPath.HeroPath, at.transform.position);
 
-        public GameObject CreateHud() =>
-          InstantiateRegistered(AssetPath.HudPath);
+        public GameObject CreateHud()
+        {
+            GameObject hud = InstantiateRegistered(AssetPath.HudPath);
+
+            hud.GetComponentInChildren<LootCounter>()
+              .Construct(_persistentProgressService.Progress.WorldData);
+
+            return hud;
+        }
+
+        public LootPiece CreateLoot()
+        {
+            LootPiece lootPiece = InstantiateRegistered(AssetPath.Loot)
+              .GetComponent<LootPiece>();
+
+            lootPiece.Construct(_persistentProgressService.Progress.WorldData);
+
+            return lootPiece;
+        }
 
         public GameObject CreateMonster(MonsterTypeId typeId, Transform parent)
         {
@@ -57,13 +76,11 @@ namespace CodeBase.Infrastructure.Factory
             monster.GetComponent<AgentMoveToPlayer>()?.Construct(_heroGameObject.transform);
             monster.GetComponent<RotateToHero>()?.Construct(_heroGameObject.transform);
 
-            return monster;
-        }
+            LootSpawner lootSpawner = monster.GetComponentInChildren<LootSpawner>();
+            lootSpawner.Construct(this, _randomService);
+            lootSpawner.SetLootValue(monsterData.MinLootValue, monsterData.MaxLootValue);
 
-        public void Cleanup()
-        {
-            ProgressReaders.Clear();
-            ProgressWriters.Clear();
+            return monster;
         }
 
         public void Register(ISavedProgressReader progressReader)
@@ -72,6 +89,12 @@ namespace CodeBase.Infrastructure.Factory
                 ProgressWriters.Add(progressWriter);
 
             ProgressReaders.Add(progressReader);
+        }
+
+        public void Cleanup()
+        {
+            ProgressReaders.Clear();
+            ProgressWriters.Clear();
         }
 
         private GameObject InstantiateRegistered(string prefabPath, Vector3 at)

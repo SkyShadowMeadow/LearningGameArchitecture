@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MonsterTypeId: 0
   Hp: 3
-  Damage: 13.2
-  EffectiveDistance: 1
-  Cleavage: 1
+  Damage: 12.5
+  MaxLootValue: 6
+  MinLootValue: 1
+  EffectiveDistance: 0.75
+  Cleavage: 0.713
   MoveSpeed: 5.22
   Prefab: {fileID: 5159685399465329419, guid: 58bfdcdcb5df542b9bd638a51d825a6c, type: 3}
